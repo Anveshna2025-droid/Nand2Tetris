@@ -409,3 +409,83 @@ AND → 1 only if ALL are 1
 OR  → 0 only if ALL are 0
 NOT → Flips the input
 ```
+
+
+---
+
+## Topic 3: The Universal Gate (NAND)
+
+---
+
+### 1. Core Definitions
+
+* **NAND Gate (NOT-AND):** A logic gate that performs an AND operation on its inputs and then inverts (flips) the result.
+* **Universal Gate:** A logic gate that can be used as a fundamental building block to recreate **any** other logic gate (NOT, AND, OR, XOR, etc.) without needing any other gate types.
+
+---
+
+### 2. NAND Gate Truth Table & Notation
+
+* **Symbol:** AND gate shape with an inversion bubble at the output tip.
+* **Boolean Expression:** $\text{NAND}(A, B) = \overline{A \cdot B}$
+* **Behavior Rule:** Outputs `0` **ONLY IF ALL** inputs are `1`. Outputs `1` in all other cases.
+
+| Input $A$ | Input $B$ | Standard AND Output | **NAND Output ($\overline{A \cdot B}$)** |
+| --- | --- | --- | --- |
+| `0` | `0` | `0` | **`1`** |
+| `0` | `1` | `0` | **`1`** |
+| `1` | `0` | `0` | **`1`** |
+| `1` | `1` | `1` | **`0`** |
+
+---
+
+### 3. Rebuilding Basic Gates Using ONLY NAND
+
+#### A. Constructing NOT from NAND
+
+* Connect both inputs of a single NAND gate to the same input signal ($A$).
+* Expression: $\text{NAND}(A, A) = \overline{A \cdot A} = \bar{A}$
+
+#### B. Constructing AND from NAND
+
+* Pass inputs through a NAND gate, then pass the output through a NAND-based NOT gate.
+* Expression: $\text{NOT}(\text{NAND}(A, B)) = \overline{\overline{A \cdot B}} = A \cdot B$
+
+#### C. Constructing OR from NAND
+
+* Invert input $A$ (using NAND 1), invert input $B$ (using NAND 2), then pass both into NAND 3.
+* Expression: $\text{NAND}(\bar{A}, \bar{B}) = \overline{\bar{A} \cdot \bar{B}} = A + B$
+
+---
+
+### 4. Key Rules & Properties
+
+1. **Universality Property:**
+* Modern computer chips are constructed primarily out of NAND gates because manufacturing a single gate type repeatedly reduces silicon fabrication costs.
+
+
+2. **Inversion Relationship:**
+* $\text{NAND}$ is the exact opposite (bitwise inverse) of $\text{AND}$.
+
+
+
+---
+
+### 5. Common Pitfalls & Exam Tips
+
+* ❌ **Pitfall:** Believing an OR gate cannot be built from NAND gates.
+* **Fact:** ALL logic gates can be constructed using only NAND gates.
+
+
+* 💡 **Exam Tip:** To quickly convert a NAND output to an AND output, just attach a NOT gate (made from NAND) right after it!
+
+---
+
+### 6. Quick Revision Summary
+
+* $\text{NAND}(1, 1) = 0$; all other input combinations yield `1`.
+* NAND is a **Universal Gate**.
+* $\text{NAND}(A, A) = \text{NOT}(A)$.
+
+---
+
